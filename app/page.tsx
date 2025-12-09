@@ -6,6 +6,7 @@ import PartnersCarousel from "../components/PartnersCarousel";
 import StatsFeatureCards from "../components/StatsFeatureCards";
 import WorkGallery from "../components/WorkGallery";
 import WhySection from "../components/WhySection";
+import ServicesSection from "../components/ServicesSection"; // <--- IMPORTUJEMY TUTAJ
 import { FaInstagram, FaYoutube, FaTiktok, FaEnvelope } from "react-icons/fa";
 
 export const metadata = {
@@ -17,151 +18,160 @@ export default function Page() {
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Header */}
-      <header className="header-compact">
+      <header className="header-compact sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
         <div className="container-max flex items-center justify-between">
           <div className="h-8">
-            <span className="h1 neon">VideoEdit</span>
+            <span className="h1 neon text-2xl">VideoEdit</span>
           </div>
 
-          <nav className="site-nav text-sm opacity-80">
-            <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">O mnie</a></li>
-              <li><a href="#services">Czym się zajmuję</a></li>
-              <li><a href="#partners">Współpracowałem z</a></li>
-              <li><a href="#stats">Na rynku</a></li>
-              <li><a href="#work">Praca</a></li>
-              <li><a href="#method">Metoda</a></li>
-              <li><a href="#contact">Kontakt</a></li>
+          <nav className="site-nav text-sm opacity-80 hidden md:block">
+            <ul className="flex gap-6">
+              <li><a href="#home" className="hover:text-cyan-400 transition">Home</a></li>
+              <li><a href="#about" className="hover:text-cyan-400 transition">O mnie</a></li>
+              <li><a href="#services" className="hover:text-cyan-400 transition">Usługi</a></li>
+              <li><a href="#partners" className="hover:text-cyan-400 transition">Współpraca</a></li>
+              <li><a href="#work" className="hover:text-cyan-400 transition">Portfolio</a></li>
+              <li><a href="#contact" className="hover:text-cyan-400 transition">Kontakt</a></li>
             </ul>
           </nav>
         </div>
       </header>
 
       {/* HERO */}
-      <section id="home" className="section">
-        <div className="container-max hero-grid relative">
+      <section id="home" className="section pt-32 pb-20 overflow-hidden relative">
+        <div className="container-max hero-grid relative z-10">
           <div>
             <HeroClient />
           </div>
 
           <div className="relative hidden md:block">
-            <div className="card p-4 neon-card" style={{ width: 360 }}>
-              <div className="w-full h-56 md:h-96 bg-neutral-900 rounded-lg overflow-hidden">
-                <Image src="/bartek.webp" alt="Bartek" width={800} height={1000} className="object-cover w-full h-full" />
+            <div className="card p-4 neon-card rotate-3 hover:rotate-0 transition-transform duration-500" style={{ width: 360 }}>
+              <div className="w-full h-56 md:h-96 bg-neutral-900 rounded-lg overflow-hidden relative">
+                <Image 
+                  src="/bartek.webp" 
+                  alt="Bartek" 
+                  width={800} 
+                  height={1000} 
+                  className="object-cover w-full h-full hover:scale-105 transition-transform duration-700" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 1) O mnie - duża sekcja z obrazem i tekstem */}
-      <section id="about" className="section">
-        <div className="container-max grid md:grid-cols-2 gap-8 items-center">
-          <div className="order-2 md:order-1">
-            <div className="w-full h-80 md:h-96 card p-0 overflow-hidden rounded-lg">
-              <Image src="/bartek.webp" alt="Bartek" width={1200} height={1200} className="object-cover w-full h-full" />
+      {/* 1) O mnie */}
+      <section id="about" className="section py-20 relative">
+        <div className="container-max grid md:grid-cols-2 gap-12 items-center">
+          <div className="order-2 md:order-1 relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-cyan-400 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
+            <div className="w-full h-80 md:h-[500px] card p-0 overflow-hidden rounded-xl relative">
+              <Image 
+                src="/bartek.webp" 
+                alt="Bartek" 
+                width={1200} 
+                height={1200} 
+                className="object-cover w-full h-full" 
+              />
             </div>
           </div>
 
           <div className="order-1 md:order-2">
-            <h2 className="text-3xl neon mb-4">CZEŚĆ! <br/> JESTEM</h2>
-            <h3 className="text-2xl neon-accent mb-4">BARTOSZ CISZEK</h3>
-            <p className="lead mb-4">Kocham robić wielkie rzeczy! Zajmuję się montażem, kreacją contentu i prowadzeniem projektów video dla twórców i marek.</p>
+            <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight font-display">
+              CZEŚĆ! <br/> JESTEM <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">BARTOSZ</span>
+            </h2>
+            <p className="lead text-lg text-gray-300 mb-6">
+              Kocham robić wielkie rzeczy! Zajmuję się montażem, kreacją contentu i prowadzeniem projektów video dla twórców i marek.
+            </p>
+            <p className="text-gray-400 mb-8">
+              Moim celem jest nie tylko "pocięcie filmu", ale stworzenie historii, która zatrzyma widza przed ekranem.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* 2) Czym się zajmuję - left image, right two boxes */}
-      <section id="services" className="section">
-        <div className="container-max grid md:grid-cols-2 gap-8 items-center">
-          <div>
-            <div className="w-full h-80 card overflow-hidden rounded-lg">
-              <Image src="/montaz.webp" alt="Montaż" width={1200} height={800} className="object-cover w-full h-full" />
-            </div>
-          </div>
-
-          <div>
-            <div className="grid gap-6">
-              <div className="card p-6">
-                <h4 className="kicker mb-2">MONTAŻYSTA</h4>
-                <p>Jeśli szukasz profesjonalisty, który nie tylko zrealizuje Twoją wizję w filmie, ale także wzbogaci ją o wyjątkową jakość i kreatywność, to trafiłeś w odpowiednie miejsce.</p>
-              </div>
-
-              <div className="card p-6">
-                <h4 className="kicker mb-2">CONTENT CREATOR</h4>
-                <p>Z pasją i kreatywnością zajmę się wykreowaniem oraz prowadzeniem Twojego profilu na różnych platformach społecznościowych. Razem zbudujemy inspirującą narrację, która przyciągnie uwagę i wzmocni Twoją markę.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 2) Czym się zajmuję - ZMIANA NA NOWY KOMPONENT */}
+      <ServicesSection />  {/* <--- TUTAJ JEST TERAZ NOWA SEKCJA */}
 
       {/* 3) Partners carousel */}
-      <section id="partners" className="section">
+      <section id="partners" className="section py-20 bg-[#050505]">
         <div className="container-max">
-          <h3 className="text-2xl neon-accent mb-6">Współpracowałem z</h3>
+          <div className="text-center mb-12">
+            <h3 className="text-3xl md:text-4xl font-bold uppercase mb-2">Współpracowałem z</h3>
+            <div className="h-1 w-20 bg-purple-600 mx-auto rounded-full"/>
+          </div>
           <PartnersCarousel />
         </div>
       </section>
 
       {/* 4) Stats */}
-      <section id="stats" className="section">
-        <div className="container-max text-center">
-          <h3 className="text-3xl neon mb-4">Na rynku działam</h3>
-          <p className="lead mb-8">od 2 lat</p>
-
-          <StatsFeatureCards />
-        </div>
+      <section id="stats" className="section py-20 bg-black">
+        <StatsFeatureCards />
       </section>
 
       {/* 5) Work gallery */}
-      <section id="work" className="section">
+      <section id="work" className="section py-20">
         <div className="container-max">
-          <h3 className="text-2xl neon-accent mb-6">Kawałek mojej pracy</h3>
+          <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
+            <div>
+              <h3 className="text-3xl md:text-4xl font-bold mb-2">Wybrane Projekty</h3>
+              <p className="text-gray-400">Zobacz, co udało mi się stworzyć.</p>
+            </div>
+            <a href="https://www.youtube.com/@BartekCiszek" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-white transition underline underline-offset-4">
+              Zobacz więcej na YouTube →
+            </a>
+          </div>
           <WorkGallery />
         </div>
       </section>
 
-      {/* 6) Method / Value propositions */}
-      <section id="method" className="section">
+      {/* 6) Method */}
+      <section id="method" className="section py-20 bg-[#080808]">
+        <div className="container-max text-center mb-12">
+          <h3 className="text-3xl md:text-4xl font-bold mb-4">Moja filozofia pracy</h3>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Nie chodzi o to, żeby było "ładnie". Chodzi o to, żeby było skutecznie.
+          </p>
+        </div>
         <div className="container-max">
-          <h3 className="text-2xl neon-accent mb-6">Pierwsze 30 sekund • Watchtime • Storytelling</h3>
           <WhySection />
         </div>
       </section>
 
       {/* 7) CTA contact */}
-      <section id="contact" className="section relative overflow-hidden">
+      <section id="contact" className="section py-32 relative overflow-hidden">
         {/* Ozdobne tło tylko dla tej sekcji */}
         <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/20 to-black pointer-events-none" />
 
         <div className="container-max text-center relative z-10">
-          <h3 className="text-4xl md:text-5xl font-display font-bold mb-6">
+          <h3 className="text-4xl md:text-6xl font-display font-black mb-8">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500">
               Zróbmy razem hałas.
             </span>
           </h3>
-          <p className="lead mb-8 max-w-xl mx-auto">
+          <p className="lead text-xl text-gray-300 mb-10 max-w-xl mx-auto">
             Masz surowy materiał? A może tylko pomysł? <br/>
-            Napisz do mnie, zamienimy to w złoto.
+            Napisz do mnie, zamienimy to w viral.
           </p>
 
-          <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-12">
-            <a href="mailto:bartosz.ciszek@videoedit.pl" className="btn-primary flex items-center gap-2 px-8 py-3 text-lg">
-              <FaEnvelope /> Napisz e-mail
+          <div className="flex flex-col items-center gap-8">
+            <a href="mailto:bartosz.ciszek@videoedit.pl" className="btn-primary flex items-center gap-3 px-10 py-4 text-xl shadow-cyan-500/20 shadow-lg hover:shadow-cyan-500/40 transition-all">
+              <FaEnvelope /> Napisz do mnie
             </a>
-          </div>
 
-          <div className="flex justify-center gap-6 text-neutral-500">
-            <a href="#" className="hover:text-cyan-400 transition transform hover:scale-110"><FaInstagram size={24} /></a>
-            <a href="#" className="hover:text-red-500 transition transform hover:scale-110"><FaYoutube size={24} /></a>
-            <a href="#" className="hover:text-pink-500 transition transform hover:scale-110"><FaTiktok size={24} /></a>
+            <div className="flex justify-center gap-8 text-neutral-500 mt-4">
+              <a href="#" className="hover:text-cyan-400 transition transform hover:scale-125 duration-300"><FaInstagram size={32} /></a>
+              <a href="#" className="hover:text-red-500 transition transform hover:scale-125 duration-300"><FaYoutube size={32} /></a>
+              <a href="#" className="hover:text-pink-500 transition transform hover:scale-125 duration-300"><FaTiktok size={32} /></a>
+            </div>
           </div>
         </div>
       </section>
 
-      <footer className="py-8 text-center opacity-60">© {new Date().getFullYear()} VideoEdit — Bartosz Ciszek</footer>
+      <footer className="py-8 text-center text-sm text-gray-600 border-t border-white/5 bg-black">
+        © {new Date().getFullYear()} VideoEdit — Bartosz Ciszek. All rights reserved.
+      </footer>
     </main>
   );
 }
