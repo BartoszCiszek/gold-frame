@@ -4,13 +4,15 @@
 import React from "react";
 import CountUp from "./CountUp";
 import { FiCheckCircle, FiThumbsUp, FiPlay } from "react-icons/fi";
+import { motion } from "framer-motion";
 
 type Card = {
   icon: React.ReactNode;
   title: string;
   desc?: string;
   value: number;
-  suffix?: string;
+  prefix?: string; // Nowe pole na tekst przed liczbą
+  suffix?: string; // Pole na tekst po liczbie
   duration?: number;
 };
 
@@ -20,7 +22,7 @@ const CARDS: Card[] = [
     title: "Zrealizowane projekty",
     desc: "Projekty od briefu po finalny export.",
     value: 150,
-    suffix: "+",
+    prefix: "+", // Przeniesione na początek
     duration: 2,
   },
   {
@@ -28,47 +30,80 @@ const CARDS: Card[] = [
     title: "Zadowolenie klientów",
     desc: "Satysfakcja klienta przy każdym zleceniu.",
     value: 100,
-    suffix: "%",
+    suffix: "%", // Zostaje na końcu
     duration: 2,
   },
   {
     icon: <FiPlay />,
-    title: "Wyświetlenia projektów",
+    title: "Wyświetlenia",
     desc: "Łączne wyświetlenia Twoich materiałów.",
     value: 1000000,
-    suffix: "+",
-    duration: 2.6,
+    prefix: "+", // Przeniesione na początek
+    duration: 2.5,
   },
 ];
 
 export default function StatsFeatureCards() {
   return (
-    <section className="stats-features" aria-labelledby="stats-heading">
-      <div className="heading">
-        <h3 id="stats-heading" className="text-2xl neon">Na rynku działam</h3>
-        <div className="sub">od 2 lat</div>
+    <section className="w-full py-12 relative z-10">
+      {/* Nagłówek sekcji */}
+      <div className="text-center mb-12">
+        <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">
+          Na rynku działam <span className="text-cyan-400">od 2 lat</span>
+        </h3>
+        <p className="text-white/60">Liczby mówią same za siebie</p>
       </div>
 
-      <div className="cards" role="list">
-        {CARDS.map((c) => (
-          <article key={c.title} className="feature-card" role="listitem" aria-label={c.title}>
-            {/* ICON TOP */}
-            <div className="icon-top" aria-hidden>
-              {React.cloneElement(c.icon as React.ReactElement, { size: 28 })}
+      {/* Grid */}
+      <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+        {CARDS.map((c, idx) => (
+          <motion.div
+            key={c.title}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.2, duration: 0.5 }}
+            className="flex flex-col items-center text-center bg-[#111] border border-white/5 p-8 rounded-2xl hover:border-cyan-500/30 transition-colors duration-300 shadow-lg group"
+          >
+            {/* Ikona */}
+            <div className="mb-6 p-4 rounded-full bg-cyan-500/10 text-cyan-400 group-hover:scale-110 transition-transform duration-300">
+              {React.cloneElement(c.icon as React.ReactElement, { size: 32 })}
             </div>
 
-            {/* TITLE + DESC */}
-            <div className="meta">
-              <h4 className="title">{c.title}</h4>
-              {c.desc && <p className="desc">{c.desc}</p>}
+            {/* Tytuł i Opis */}
+            <div className="mb-6 flex-grow">
+              <h4 className="text-xl font-bold text-white mb-2">{c.title}</h4>
+              {c.desc && <p className="text-sm text-white/60 leading-relaxed">{c.desc}</p>}
             </div>
 
-            {/* COUNT */}
-            <div className="count" aria-hidden>
-              <CountUp to={c.value} duration={c.duration} separator=" " className="inline-block" />
-              <span className="suffix" aria-hidden>{c.suffix}</span>
+            {/* Licznik */}
+            <div className="mt-auto pt-4 border-t border-white/5 w-full">
+              <span className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 tabular-nums inline-flex items-center justify-center">
+                
+                {/* PREFIX (np. +) */}
+                {c.prefix && (
+                  <span className="mr-2 text-3xl md:text-4xl text-purple-400 font-bold">
+                    {c.prefix}
+                  </span>
+                )}
+
+                <CountUp 
+                  to={c.value} 
+                  duration={c.duration} 
+                  separator=" " 
+                  className="inline-block" 
+                />
+
+                {/* SUFFIX (np. %) */}
+                {c.suffix && (
+                  <span className="ml-1 text-3xl md:text-4xl text-purple-400 font-bold">
+                    {c.suffix}
+                  </span>
+                )}
+                
+              </span>
             </div>
-          </article>
+          </motion.div>
         ))}
       </div>
     </section>

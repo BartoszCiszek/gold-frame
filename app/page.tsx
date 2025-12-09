@@ -6,6 +6,7 @@ import PartnersCarousel from "../components/PartnersCarousel";
 import StatsFeatureCards from "../components/StatsFeatureCards";
 import WorkGallery from "../components/WorkGallery";
 import WhySection from "../components/WhySection";
+import { FaInstagram, FaYoutube, FaTiktok, FaEnvelope } from "react-icons/fa";
 
 export const metadata = {
   title: "VideoEdit — Bartosz Ciszek",
@@ -131,10 +132,32 @@ export default function Page() {
       </section>
 
       {/* 7) CTA contact */}
-      <section id="contact" className="section">
-        <div className="container-max">
-          <h3 className="text-2xl neon-accent mb-4">Zbudujemy emocje wspólnie!</h3>
-          <p className="lead mb-4">Kontakt: <a href="mailto:bartosz.ciszek@videoedit.pl" className="neon-accent">bartosz.ciszek@videoedit.pl</a></p>
+      <section id="contact" className="section relative overflow-hidden">
+        {/* Ozdobne tło tylko dla tej sekcji */}
+        <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/20 to-black pointer-events-none" />
+
+        <div className="container-max text-center relative z-10">
+          <h3 className="text-4xl md:text-5xl font-display font-bold mb-6">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500">
+              Zróbmy razem hałas.
+            </span>
+          </h3>
+          <p className="lead mb-8 max-w-xl mx-auto">
+            Masz surowy materiał? A może tylko pomysł? <br/>
+            Napisz do mnie, zamienimy to w złoto.
+          </p>
+
+          <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-12">
+            <a href="mailto:bartosz.ciszek@videoedit.pl" className="btn-primary flex items-center gap-2 px-8 py-3 text-lg">
+              <FaEnvelope /> Napisz e-mail
+            </a>
+          </div>
+
+          <div className="flex justify-center gap-6 text-neutral-500">
+            <a href="#" className="hover:text-cyan-400 transition transform hover:scale-110"><FaInstagram size={24} /></a>
+            <a href="#" className="hover:text-red-500 transition transform hover:scale-110"><FaYoutube size={24} /></a>
+            <a href="#" className="hover:text-pink-500 transition transform hover:scale-110"><FaTiktok size={24} /></a>
+          </div>
         </div>
       </section>
 

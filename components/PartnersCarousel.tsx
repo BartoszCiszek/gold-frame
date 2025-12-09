@@ -3,44 +3,101 @@
 
 import React from "react";
 import Image from "next/image";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import { FaYoutube, FaInstagram } from "react-icons/fa";
+import CountUp from "./CountUp"; // Importujemy Twój komponent licznika
 
+// Dane na podstawie Twojego zdjęcia
 const partners = [
-  { name: "Influencer A", img: "/nicole.webp", yt: "120k", ig: "45k", tt: "300k" },
-  { name: "Influencer B", img: "/nicole.webp", yt: "80k", ig: "30k", tt: "200k" },
-  { name: "Influencer C", img: "/nicole.webp", yt: "60k", ig: "10k", tt: "90k" },
-  { name: "Influencer D", img: "/nicole.webp", yt: "200k", ig: "120k", tt: "900k" },
+  { 
+    name: "FRIZ", 
+    img: "/bartek.webp", // Zmień na zdjęcie Friza (wgraj do /public)
+    yt: 5000000, 
+    ig: 4000000 
+  },
+  { 
+    name: "WERSOW", 
+    img: "/nicole.webp", // Zmień na zdjęcie Wersow
+    yt: 2670000, 
+    ig: 3600000 
+  },
+  { 
+    name: "PATEC", 
+    img: "/bartek.webp", // Zmień na zdjęcie Pateca
+    yt: 1580000, 
+    ig: 2200000 
+  },
 ];
 
 export default function PartnersCarousel() {
-  const ref = useRef<HTMLDivElement | null>(null);
-
-  const scroll = (dir: number) => {
-    if (!ref.current) return;
-    ref.current.scrollBy({ left: ref.current.clientWidth * dir, behavior: "smooth" });
-  };
-
   return (
-    <div>
-      <div className="flex justify-between items-center mb-4">
-        <div className="kicker">Partnerzy</div>
-        <div>
-          <button onClick={() => scroll(-1)} className="px-3 py-1 mr-2 border rounded">◀</button>
-          <button onClick={() => scroll(1)} className="px-3 py-1 border rounded">▶</button>
-        </div>
-      </div>
+    <div className="w-full py-10">
+      {/* Grid: 1 kolumna na mobilkach, 3 na desktopie - idealnie jak na zdjęciu */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {partners.map((p, idx) => (
+          <motion.div
+            key={p.name}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.15, duration: 0.5 }}
+            className="flex flex-col bg-[#111] rounded-xl overflow-hidden group hover:-translate-y-2 transition-transform duration-300 shadow-2xl border border-white/5"
+          >
+            {/* 1. Zdjęcie */}
+            <div className="relative w-full aspect-[4/5] overflow-hidden">
+              <Image 
+                src={p.img} 
+                alt={p.name} 
+                fill 
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+              {/* Cień wewnętrzny na dole zdjęcia dla lepszego przejścia */}
+              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/60 to-transparent" />
+            </div>
 
-      <div ref={ref} className="flex gap-6 overflow-x-auto pb-4" style={{ scrollSnapType: "x mandatory" }}>
-        {partners.map((p) => (
-          <div key={p.name} className="min-w-[300px] project-box" style={{ scrollSnapAlign: "start" }}>
-            <div className="w-full h-40 relative mb-3 overflow-hidden rounded">
-              <Image src={p.img} alt={p.name} fill sizes="300px" className="object-cover" />
+            {/* 2. Pasek z imieniem (Fioletowy) */}
+            <div className="bg-[#8b00ff] py-3 text-center relative z-10">
+              <h3 className="text-2xl font-black text-white uppercase tracking-wider font-display">
+                {p.name}
+              </h3>
             </div>
-            <h4 className="kicker">{p.name}</h4>
-            <div className="mt-2 text-sm opacity-80">
-              <div>YT: <strong>{p.yt}</strong> • IG: <strong>{p.ig}</strong> • TT: <strong>{p.tt}</strong></div>
+
+            {/* 3. Statystyki */}
+            <div className="bg-[#1a1a1a] p-5 flex flex-col gap-3 items-center justify-center border-t border-white/10">
+              
+              {/* YouTube */}
+              <div className="flex items-center gap-3 w-full justify-center">
+                <div className="p-1.5 bg-white/10 rounded-lg">
+                  <FaYoutube className="text-2xl text-white" />
+                </div>
+                <div className="text-lg font-bold text-white font-mono tracking-tight">
+                  <CountUp 
+                    to={p.yt} 
+                    duration={2.5} 
+                    separator="," 
+                    className="tabular-nums" 
+                  />
+                </div>
+              </div>
+
+              {/* Instagram */}
+              <div className="flex items-center gap-3 w-full justify-center">
+                <div className="p-1.5 bg-white/10 rounded-lg">
+                  <FaInstagram className="text-2xl text-white" />
+                </div>
+                <div className="text-lg font-bold text-white font-mono tracking-tight">
+                  <CountUp 
+                    to={p.ig} 
+                    duration={2.5} 
+                    separator="," 
+                    className="tabular-nums" 
+                  />
+                </div>
+              </div>
+
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
