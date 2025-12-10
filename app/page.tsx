@@ -7,6 +7,7 @@ import StatsFeatureCards from "../components/StatsFeatureCards";
 import WorkGallery from "../components/WorkGallery";
 import WhySection from "../components/WhySection";
 import ServicesSection from "../components/ServicesSection";
+import DynamicTitle from "../components/DynamicTitle"; // <--- 1. IMPORTUJEMY TUTAJ
 import { FaInstagram, FaYoutube, FaTiktok, FaEnvelope } from "react-icons/fa";
 
 export const metadata = {
@@ -29,41 +30,35 @@ export default function Page() {
             playsInline
             className="w-full h-full object-cover"
           >
-            {/* Pamiętaj, aby wgrać plik hero.mp4 do folderu /public */}
             <source src="/hero.mp4" type="video/mp4" />
           </video>
           
-          {/* Overlay - przyciemnienie wideo dla czytelności tekstu */}
           <div className="absolute inset-0 bg-black/70" />
-          {/* Gradient od dołu, żeby ładnie przechodził w kolejną sekcję */}
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30" />
         </div>
 
-        {/* 2. TREŚĆ HERO (musi być relatywna i mieć z-10) */}
+        {/* 2. TREŚĆ HERO */}
         <div className="container-max hero-grid relative z-10 w-full">
           <div>
             <HeroClient />
           </div>
 
-          {/* Opcjonalnie: Zdjęcie po prawej. 
-              Jeśli wolisz "czysty" styl jak u Dawida (samo wideo), możesz usunąć ten div poniżej.
-              Zostawiłem go, bo fajnie wygląda jako "profilówka" nad wideo. */}
           <div className="relative hidden md:block">
-            <div className="card p-4 neon-card rotate-3 hover:rotate-0 transition-transform duration-500" style={{ width: 360 }}>
-              <div className="w-full h-56 md:h-96 bg-neutral-900 rounded-lg overflow-hidden relative">
-                <Image 
-                  src="/bartek.webp" 
-                  alt="Bartek" 
-                  width={800} 
-                  height={1000} 
-                  className="object-cover w-full h-full hover:scale-105 transition-transform duration-700" 
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              </div>
-            </div>
           </div>
         </div>
       </section>
+
+      {/* --- SEPARATOR TYPOGRAFICZNY (ANIMOWANY) --- */}
+      <div className="w-full bg-black py-16 flex justify-center items-center relative z-10 border-b border-white/5">
+         <div className="text-center">
+            <p className="text-sm text-cyan-400 font-bold tracking-[0.3em] uppercase mb-3">
+              Production House
+            </p>
+            {/* 2. UŻYWAMY TUTAJ NOWEGO KOMPONENTU */}
+            <DynamicTitle />
+         </div>
+      </div>
+      {/* ------------------------------------------------------- */}
 
       {/* 1) O mnie */}
       <section id="about" className="section py-20 relative">
