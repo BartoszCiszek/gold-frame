@@ -31,7 +31,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
       <body className="bg-black text-white antialiased">
         {/* animated background with extra blobs */}
-        <div className="film-grain" aria-hidden="true" />
         <div className="animated-bg" aria-hidden="true">
           <div className="blob-3" />
           <div className="center-glow" />

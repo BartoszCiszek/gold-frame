@@ -1,3 +1,4 @@
+// /app/page.tsx
 import React from "react";
 import Image from "next/image";
 import HeroClient from "../components/HeroClient";
@@ -97,7 +98,7 @@ export default function Page() {
       <section id="partners" className="section py-20 bg-[#050505]">
         <div className="container-max">
           <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold uppercase mb-2">Współpracowałem z</h3>
+            <h3 className="text-3xl md:text-4xl font-bold uppercase mb-2 font-sans tracking-tighter">Współpracowałem z</h3>
             <div className="h-1 w-20 bg-purple-600 mx-auto rounded-full"/>
           </div>
           <PartnersCarousel />
@@ -114,7 +115,7 @@ export default function Page() {
         <div className="container-max">
           <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
             <div>
-              <h3 className="text-3xl md:text-4xl font-bold mb-2">Wybrane Projekty</h3>
+              <h3 className="text-3xl md:text-4xl font-bold mb-2 font-sans tracking-tighter uppercase">Wybrane Projekty</h3>
               <p className="text-gray-400">Zobacz, co udało mi się stworzyć.</p>
             </div>
             <a href="https://www.youtube.com/@BartekCiszek" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-white transition underline underline-offset-4">
@@ -128,7 +129,7 @@ export default function Page() {
       {/* 6) Method */}
       <section id="method" className="section py-20 bg-[#080808]">
         <div className="container-max text-center mb-12">
-          <h3 className="text-3xl md:text-4xl font-bold mb-4">Moja filozofia pracy</h3>
+          <h3 className="text-3xl md:text-4xl font-bold mb-4 font-sans tracking-tighter uppercase">Moja filozofia pracy</h3>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Nie chodzi o to, żeby było "ładnie". Chodzi o to, żeby było skutecznie.
           </p>
@@ -140,10 +141,12 @@ export default function Page() {
 
       {/* 7) CTA contact */}
       <section id="contact" className="section py-32 relative overflow-hidden">
+        {/* Ozdobne tło tylko dla tej sekcji */}
         <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/20 to-black pointer-events-none" />
 
         <div className="container-max text-center relative z-10">
-          <h3 className="text-4xl md:text-6xl font-display font-black mb-8">
+          {/* POPRAWIONY NAGŁÓWEK: font-sans, tracking-tighter, uppercase */}
+          <h3 className="text-4xl md:text-6xl font-black mb-8 leading-[0.9] tracking-tighter font-sans uppercase">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500">
               Zróbmy razem hałas.
             </span>
