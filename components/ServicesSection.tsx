@@ -95,9 +95,9 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
 // Główny komponent sekcji
 export default function ServicesSection() {
   return (
-    <section id="services" className="relative py-20 md:py-32 bg-black overflow-hidden">
+    <section id="services" className="relative py-20 md:py-32 bg-[#1d1d1d] overflow-hidden">
       {/* Subtelne tło/ziarno */}
-      <div className="absolute inset-0 bg-[#050505] opacity-50 pointer-events-none" />
+      <div className="absolute inset-0 bg-[#1d1d1d] opacity-50 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Nagłówek sekcji */}

@@ -12,9 +12,10 @@
 
 /* ========== BASE STYLES ========== */
 html, body, #__next { height: 100%; }
+
 body {
   margin: 0;
-  background: #000;
+  background: #1d1d1d;
   color: #e6eef6;
   font-family: var(--font-sans);
   line-height: 1.5;
@@ -84,19 +85,68 @@ body {
 
 /* ANIMATED BACKGROUND */
 .animated-bg {
-  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; mix-blend-mode: screen;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  mix-blend-mode: screen;
+
+  /* NIE RUSZAMY TEGO – to efekt świetlny, współgra z nowym tłem */
   background-image:
     radial-gradient(circle at 10% 20%, rgba(10,20,30,0.45), transparent 12%),
     radial-gradient(circle at 90% 80%, rgba(8,8,12,0.55), transparent 18%),
     linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.24));
 }
+
 .animated-bg::before, .animated-bg::after, .animated-bg .blob-3 {
-  content: ""; position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.14; will-change: transform, opacity;
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.14;
+  will-change: transform, opacity;
 }
-.animated-bg::before { width: 720px; height: 720px; left: -12%; top: -8%; background: linear-gradient(90deg, rgba(0,230,255,0.95), rgba(123,0,255,0.2)); animation: moveBlobA 16s infinite ease-in-out; }
-.animated-bg::after { width: 620px; height: 620px; right: -8%; bottom: -10%; background: linear-gradient(90deg, rgba(255,90,160,0.9), rgba(162,0,255,0.18)); animation: moveBlobB 18s infinite ease-in-out; }
-.animated-bg .blob-3 { width: 480px; height: 480px; left: 50%; top: 20%; transform: translate(-50%, -15%); background: linear-gradient(90deg, rgba(0,20,40,0.0), rgba(10,0,60,0.12)); animation: moveBlobC 20s infinite ease-in-out; opacity: 0.08; filter: blur(100px); }
-.animated-bg .center-glow { position: absolute; left: 60%; top: 40%; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(0,230,255,0.12), transparent 40%); filter: blur(60px); opacity: 0.08; animation: pulse 10s infinite ease-in-out; pointer-events:none; }
+.animated-bg::before {
+  width: 720px;
+  height: 720px;
+  left: -12%;
+  top: -8%;
+  background: linear-gradient(90deg, rgba(0,230,255,0.95), rgba(123,0,255,0.2));
+  animation: moveBlobA 16s infinite ease-in-out;
+}
+.animated-bg::after {
+  width: 620px;
+  height: 620px;
+  right: -8%;
+  bottom: -10%;
+  background: linear-gradient(90deg, rgba(255,90,160,0.9), rgba(162,0,255,0.18));
+  animation: moveBlobB 18s infinite ease-in-out;
+}
+.animated-bg .blob-3 {
+  width: 480px;
+  height: 480px;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -15%);
+  background: linear-gradient(90deg, rgba(0,20,40,0.0), rgba(10,0,60,0.12));
+  animation: moveBlobC 20s infinite ease-in-out;
+  opacity: 0.08;
+  filter: blur(100px);
+}
+.animated-bg .center-glow {
+  position: absolute;
+  left: 60%;
+  top: 40%;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(0,230,255,0.12), transparent 40%);
+  filter: blur(60px);
+  opacity: 0.08;
+  animation: pulse 10s infinite ease-in-out;
+  pointer-events:none;
+}
 
 @keyframes moveBlobA { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(-20px,20px,0) scale(0.95); } }
 @keyframes moveBlobB { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(20px,-10px,0) scale(0.97); } }
@@ -106,3 +156,83 @@ body {
 /* Z-INDEX SAFETY */
 main, header, section, footer, .container-max, .card, .project-box { position: relative; z-index: 1; }
 * { outline-color: transparent; }
+
+/* POPRAWIONY PRZYCISK CTA */
+.btn-gradient {
+  background: linear-gradient(90deg, rgba(0,240,255,1) 0%, rgba(194,54,255,1) 100%);
+  color: white;
+  border-radius: 999px;
+  box-shadow:
+    0 6px 22px rgba(163, 55, 255, 0.14),
+    0 2px 8px rgba(0,0,0,0.6);
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  transform: translateZ(0);
+  transition: transform .14s ease, box-shadow .14s ease, filter .14s ease;
+  padding-left: 0.9rem;
+  padding-right: 1.2rem;
+}
+
+/* ikonka - ciemniejszy, subtelny box, bez białej plamy */
+.btn-icon {
+  background: rgba(255,255,255,0.06); /* delikatny kontrast */
+  border: 1px solid rgba(255,255,255,0.06);
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.45) inset;
+}
+
+/* ikona SVG */
+.btn-icon svg {
+  color: rgba(255,255,255,0.95);
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* tekst przycisku */
+.btn-text {
+  color: white;
+  line-height: 1;
+  display: inline-block;
+}
+
+/* hover */
+.btn-gradient:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow:
+    0 14px 40px rgba(163, 55, 255, 0.18),
+    0 4px 14px rgba(0,0,0,0.6);
+  filter: saturate(1.03);
+}
+
+/* delikatny "shine" (pseudo-element) */
+.btn-gradient::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  inset: 0;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  mix-blend-mode: overlay;
+  opacity: 0.7;
+}
+
+/* zabezpieczenie - svg nie będzie skalować się dziwnie */
+.btn-gradient svg { flex-shrink: 0; }
+
+/* adaptacja dla małych ekranów */
+@media (max-width: 480px) {
+  .btn-gradient { padding-left: 0.6rem; padding-right: 0.8rem; gap: 0.6rem; }
+  .btn-icon { width: 32px; height: 32px; min-width: 32px; min-height: 32px; }
+  .btn-icon svg { width: 16px; height: 16px; }
+}
