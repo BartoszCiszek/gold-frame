@@ -6,7 +6,7 @@ import React from "react";
 const items = [
   { id: "yt1", src: "https://www.youtube.com/embed/m9eO-5gCBtU", title: "Kanał Lexy - Testowy montaż w ramach aplikacji na montażystę do zespołu Lexy. Materiał niewykorzystany oficjalnie" },
   { id: "yt2", src: "https://www.youtube.com/embed/zwzbvePCobk", title: "GRAMY W SIMSY! (nikt nie prosił, każdy potrzebował) 💚🖥️" },
-  { id: "yt3", src: "https://www.youtube.com/embed/dQw4w9WgXcQ", title: "Vlog z Y" },
+  { id: "yt3", src: "https://www.youtube.com/embed/sq7fKy3iz5w", title: "Short-form reel — testowy montaż aplikacyjny" },
 ];
 
 export default function WorkGallery() {
