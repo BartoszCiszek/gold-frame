@@ -178,29 +178,47 @@ export default function Page() {
             Masz surowy materiał? A może tylko pomysł? Napisz do mnie — zamienimy to w viral.
           </p>
 
-          {/* PRZYCISKI CTA (wycentrowane) */}
-          <div className="flex justify-center items-center gap-4 flex-wrap mb-10">
-            {/* PRIMARY CTA - gradient, poprawiony */}
+          {/* KONTAKT — MAIL + TEL Z GRADIENTEM */}
+          <div className="flex flex-col items-center gap-5 mb-10 text-lg md:text-xl">
+
+            {/* EMAIL */}
             <a
               href="mailto:bartosz.ciszek@videoedit.pl"
-              className="btn-gradient inline-flex items-center gap-4 px-6 py-3 text-lg font-semibold relative"
-              aria-label="Napisz do Bartka"
+              className="contact-link flex items-center gap-3 text-gray-300 hover:text-white transition"
             >
-              <span className="btn-icon inline-flex items-center justify-center w-9 h-9 rounded-md">
-                <FaEnvelope className="w-4 h-4" />
+              <FaEnvelope className="w-5 h-5 opacity-80" />
+              <span className="contact-gradient font-medium tracking-wide">
+                bartosz.ciszek@videoedit.pl
               </span>
-
-              <span className="btn-text">Napisz do mnie</span>
             </a>
 
-            {/* SECONDARY CTA */}
+            {/* TELEFON */}
             <a
-              href="#work"
-              className="px-7 py-3 rounded-full font-semibold border border-white/20 text-white/90 hover:bg-white/6 transition"
+              href="tel:+48603832422"
+              className="contact-link flex items-center gap-3 text-gray-300 hover:text-white transition"
             >
-              Zobacz realizacje
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-5 h-5 opacity-80"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={1.8}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a.75.75 0 00.75-.75v-3.615a.75.75 0 00-.56-.727l-3.09-.772a.75.75 0 00-.84.352l-.727 1.09a12.06 12.06 0 01-5.318-5.318l1.09-.727a.75.75 0 00.352-.84l-.772-3.09a.75.75 0 00-.727-.56H3a.75.75 0 00-.75.75v1.5z"
+                />
+              </svg>
+
+              <span className="contact-gradient font-medium tracking-wide">
+                +48 603 832 422
+              </span>
             </a>
           </div>
+
+
 
           {/* SOCIAL IKONY */}
           <div className="flex justify-center gap-8 text-neutral-400 mt-2">
