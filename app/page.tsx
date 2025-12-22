@@ -223,7 +223,7 @@ export default function Page() {
           {/* SOCIAL IKONY */}
           <div className="flex justify-center gap-8 text-[#4a4e51] mt-2">
             <a
-              href="https://www.instagram.com/videoeditpl?igsh=MW1saXA4OHRkbmRkcg%3D%3D&utm_source=qr"
+              href="https://www.instagram.com/goldframe.pl"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#aa835c] transition transform hover:-translate-y-1"
