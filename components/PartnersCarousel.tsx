@@ -27,95 +27,115 @@ export default function PartnersCarousel() {
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollContainerRef.current) return;
-    const scrollAmount = direction === "left" ? -340 : 340;
     scrollContainerRef.current.scrollBy({
-      left: scrollAmount,
+      left: direction === "left" ? -360 : 360,
       behavior: "smooth",
     });
   };
 
   return (
-    <section className="w-full py-16 relative">
-      {/* STRZAŁKI – tylko jeśli jest więcej niż 1 osoba */}
+    <section className="w-full py-20 relative">
+      {/* STRZAŁKI – tylko gdy >1 partner */}
       {!isSingle && (
         <>
           <button
             onClick={() => scroll("left")}
-            className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-purple-600 text-white p-3 rounded-full backdrop-blur transition shadow-xl border border-white/10"
-            aria-label="Przewiń w lewo"
+            className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 z-20
+              w-12 h-12 items-center justify-center rounded-full
+              bg-[#1a1a1b] border border-[#4a4e51]
+              text-[#aa835c]
+              hover:border-[#aa835c]
+              hover:shadow-[0_0_22px_rgba(170,131,92,0.45)]
+              transition"
+            aria-label="Poprzedni"
           >
-            <FaChevronLeft size={22} />
+            <FaChevronLeft />
           </button>
 
           <button
             onClick={() => scroll("right")}
-            className="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-purple-600 text-white p-3 rounded-full backdrop-blur transition shadow-xl border border-white/10"
-            aria-label="Przewiń w prawo"
+            className="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 z-20
+              w-12 h-12 items-center justify-center rounded-full
+              bg-[#1a1a1b] border border-[#4a4e51]
+              text-[#aa835c]
+              hover:border-[#aa835c]
+              hover:shadow-[0_0_22px_rgba(170,131,92,0.45)]
+              transition"
+            aria-label="Następny"
           >
-            <FaChevronRight size={22} />
+            <FaChevronRight />
           </button>
         </>
       )}
 
-      {/* KONTAINER */}
+      {/* CONTAINER */}
       <div
         ref={scrollContainerRef}
         className={
           isSingle
             ? "flex justify-center px-4"
-            : "flex overflow-x-auto gap-6 md:gap-8 pb-8 px-4 md:px-12 snap-x snap-mandatory scrollbar-hide"
+            : "flex overflow-x-auto gap-8 px-4 md:px-16 snap-x snap-mandatory scrollbar-hide"
         }
-        style={
-          isSingle
-            ? undefined
-            : { scrollbarWidth: "none", msOverflowStyle: "none" }
-        }
+        style={isSingle ? undefined : { scrollbarWidth: "none" }}
       >
         {partners.map((p, idx) => (
-          <motion.div
+          <motion.article
             key={`${p.name}-${idx}`}
-            initial={{ opacity: 0, scale: 0.92 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="w-[280px] md:w-[320px] flex flex-col bg-[#101010] rounded-xl overflow-hidden shadow-2xl border border-white/10"
+            className="
+              snap-center
+              w-[300px] md:w-[340px]
+              bg-[#222224]
+              border border-[#4a4e51]
+              rounded-2xl
+              overflow-hidden
+              shadow-[0_25px_80px_rgba(0,0,0,0.7)]
+              hover:border-[#aa835c]
+              hover:shadow-[0_30px_90px_rgba(0,0,0,0.75),0_0_32px_rgba(170,131,92,0.18)]
+              transition-all
+              duration-300
+            "
           >
-            {/* ZDJĘCIE */}
-            <div className="relative w-full aspect-[4/5] overflow-hidden">
+            {/* IMAGE */}
+            <div className="relative aspect-[4/5]">
               <Image
                 src={p.img}
                 alt={p.name}
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 320px"
+                sizes="(max-width:768px) 100vw, 340px"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             </div>
 
-            {/* IMIĘ */}
-            <div className="bg-[#8b00ff] py-3 text-center">
-              <h3 className="text-xl font-black text-white uppercase tracking-wide">
+            {/* NAME */}
+            <div className="text-center py-4">
+              <h3 className="text-xl font-semibold text-[#f4f4f4] tracking-tight">
                 {p.name}
               </h3>
+              <div className="mx-auto mt-2 h-[2px] w-12 bg-[#aa835c] shadow-[0_0_12px_rgba(170,131,92,0.45)]" />
             </div>
 
-            {/* STATYSTYKI */}
-            <div className="bg-[#151515] p-5 flex flex-col gap-3 items-center border-t border-white/10">
-              <div className="flex items-center gap-3">
-                <FaYoutube className="text-xl text-red-500" />
-                <span className="text-lg font-bold text-white font-mono">
+            {/* STATS */}
+            <div className="px-6 pb-6 flex flex-col gap-3">
+              <div className="flex items-center justify-center gap-3 text-[#e0e0e0]">
+                <FaYoutube className="text-[#aa835c]" />
+                <span className="font-mono font-semibold">
                   <CountUp to={p.yt} duration={2.5} separator="," />
                 </span>
               </div>
 
-              <div className="flex items-center gap-3">
-                <FaInstagram className="text-xl text-pink-500" />
-                <span className="text-lg font-bold text-white font-mono">
+              <div className="flex items-center justify-center gap-3 text-[#e0e0e0]">
+                <FaInstagram className="text-[#aa835c]" />
+                <span className="font-mono font-semibold">
                   <CountUp to={p.ig} duration={2.5} separator="," />
                 </span>
               </div>
             </div>
-          </motion.div>
+          </motion.article>
         ))}
       </div>
     </section>

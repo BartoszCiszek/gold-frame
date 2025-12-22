@@ -47,7 +47,7 @@ const HeroClient: React.FC = () => {
 
         <motion.a
           href="#contact"
-          className="px-6 py-2 rounded-full border border-neutral-700 text-neutral-300 hover:text-white hover:border-cyan-400 transition-colors duration-300 backdrop-blur-sm bg-black/30"
+          className="px-6 py-2 rounded-full border border-neutral-700 text-neutral-300 hover:text-white hover:border-white transition-colors duration-300 backdrop-blur-sm bg-black/30"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >

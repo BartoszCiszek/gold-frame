@@ -8,16 +8,16 @@ import WorkGallery from "../components/WorkGallery";
 import WhySection from "../components/WhySection";
 import ServicesSection from "../components/ServicesSection";
 import DynamicTitle from "../components/DynamicTitle";
-import { FaInstagram, FaYoutube, FaTiktok, FaEnvelope } from "react-icons/fa";
+import { FaInstagram, FaYoutube, FaEnvelope } from "react-icons/fa";
 
 export const metadata = {
-  title: "VideoEdit — Bartosz Ciszek",
-  description: "VideoEdit — montaż, content creation, storytelling",
+  title: "GoldFrame — Bartosz Ciszek",
+  description: "GoldFrame — cinematic post-production, color grading, storytelling",
 };
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-[#1d1d1d] text-white">
+    <main className="min-h-screen bg-[#1a1a1b] text-[#e0e0e0]">
       {/* HERO Z WIDEO W TLE */}
       <section
         id="home"
@@ -30,48 +30,47 @@ export default function Page() {
             muted
             loop
             playsInline
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-80"
           >
             <source src="/hero.mp4" type="video/mp4" />
           </video>
 
-          <div className="absolute inset-0 bg-black/70" />
-          <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-black/30" />
+          {/* Overlay w kolorze Deep Charcoal */}
+          <div className="absolute inset-0 bg-[#1a1a1b]/80" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1b] via-transparent to-[#1a1a1b]/30" />
         </div>
 
-        {/* TREŚĆ HERO — LOGO LEWO / HEROCLIENT PRAWO (zachowuje funkcje) */}
+        {/* TREŚĆ HERO */}
         <div className="container-max relative z-10 w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            {/* LEWA KOLUMNA — CZYSTE LOGO (zero ramek / zero glass) */}
+            {/* LEWA KOLUMNA — LOGO */}
             <div className="flex justify-center md:justify-start">
               <div className="relative" style={{ width: 380 }}>
                 <Image
-                  src="/logo.webp"
-                  alt="Logo"
+                  src="/Logo.png"
+                  alt="GoldFrame Logo"
                   width={800}
                   height={800}
-                  className="object-contain w-[260px] md:w-[340px] lg:w-[380px] h-auto"
+                  className="object-contain w-[260px] md:w-[340px] lg:w-[380px] h-auto drop-shadow-[0_0_15px_rgba(170,131,92,0.3)]"
                   style={{ background: "transparent", display: "block" }}
                   priority
                 />
               </div>
             </div>
 
-            {/* PRAWA KOLUMNA — HEROCLIENT (używamy komponentu żeby zachować wszystkie efekty/CTA) */}
+            {/* PRAWA KOLUMNA — HEROCLIENT */}
             <div className="flex flex-col justify-center items-start">
-              {/* HeroClient powinien zawierać Twój nagłówek "Montaż. Kolor. Ruch.", opis i CTA.
-                  Nie zmieniamy go — tylko osadzamy tutaj, więc wszystkie jego animacje zostają. */}
               <HeroClient />
             </div>
           </div>
         </div>
       </section>
 
-      {/* --- SEPARATOR TYPOGRAFICZNY (ANIMOWANY) --- */}
-      <div className="w-full bg-black py-16 flex justify-center items-center relative z-10 border-b border-white/5">
+      {/* --- SEPARATOR TYPOGRAFICZNY (GOLD) --- */}
+      <div className="w-full bg-[#151516] py-16 flex justify-center items-center relative z-10 border-b border-[#aa835c]/10">
         <div className="text-center">
-          <p className="text-sm text-cyan-400 font-bold tracking-[0.3em] uppercase mb-3">
-            Production House
+          <p className="text-sm text-[#aa835c] font-bold tracking-[0.3em] uppercase mb-3">
+            Cinematic Post-Production
           </p>
           <DynamicTitle />
         </div>
@@ -79,34 +78,35 @@ export default function Page() {
       {/* ------------------------------------------------------- */}
 
       {/* 1) O mnie */}
-      <section id="about" className="section py-20 relative">
+      <section id="about" className="section py-20 relative bg-[#1a1a1b]">
         <div className="container-max grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1 relative group">
-            <div className="absolute -inset-1 bg-linear-to-r from-purple-600 to-cyan-400 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-500" />
-            <div className="w-full h-80 md:h-[600px] card p-0 overflow-hidden rounded-xl relative">
+            {/* Złoty blob w tle */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-[#aa835c] to-[#7a5c3d] rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-500" />
+            <div className="w-full h-80 md:h-[600px] card p-0 overflow-hidden rounded-xl relative border border-[#aa835c]/20">
               <Image
                 src="/bartek.webp"
                 alt="Bartek"
                 width={1000}
                 height={1200}
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-full grayscale hover:grayscale-0 transition duration-700"
               />
             </div>
           </div>
 
           <div className="order-1 md:order-2">
-            <h2 className="text-4xl md:text-6xl font-black mb-6 leading-[0.9] tracking-tighter font-sans">
+            <h2 className="text-4xl md:text-6xl font-black mb-6 leading-[0.9] tracking-tighter font-sans text-white">
               CZEŚĆ! <br />
               JESTEM{" "}
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-purple-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#aa835c] to-[#f0d5b5] glow-text-gold">
                 BARTEK
               </span>
             </h2>
-            <p className="lead text-lg text-gray-300 mb-6 font-medium">
-              Kocham robić wielkie rzeczy! Zajmuję się montażem, kreacją contentu i prowadzeniem projektów video dla twórców i marek.
+            <p className="lead text-lg text-[#e0e0e0] mb-6 font-medium">
+              Tworzę kinową jakość w formacie digital. Zajmuję się postprodukcją, color gradingiem i narracją wizualną dla marek premium.
             </p>
-            <p className="text-gray-400 mb-8 leading-relaxed">
-              Moim celem jest nie tylko "pocięcie filmu", ale stworzenie historii, która zatrzyma widza przed ekranem.
+            <p className="text-[#9ca3af] mb-8 leading-relaxed">
+              Moim celem jest wydobycie "złota" z każdego ujęcia. Nie tylko montuję — projektuję emocje, które zatrzymują widza.
             </p>
           </div>
         </div>
@@ -116,44 +116,45 @@ export default function Page() {
       <ServicesSection />
 
       {/* 3) Partners */}
-      <section id="partners" className="section py-20 bg-[#1d1d1d]">
+      <section id="partners" className="section py-20 bg-[#1a1a1b]">
         <div className="container-max">
           <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold uppercase mb-2 font-sans tracking-tighter">
-              Współpracowałem z
+            <h3 className="text-3xl md:text-4xl font-bold uppercase mb-2 font-sans tracking-tighter text-white">
+              Zaufali mi
             </h3>
-            <div className="h-1 w-20 bg-purple-600 mx-auto rounded-full" />
+            {/* Złota linia */}
+            <div className="h-1 w-20 bg-[#aa835c] mx-auto rounded-full" />
           </div>
           <PartnersCarousel />
         </div>
       </section>
 
       {/* 4) Stats */}
-      <section id="stats" className="section py-20 bg-[#1d1d1d]">
+      <section id="stats" className="section py-20 bg-[#1a1a1b]">
         <StatsFeatureCards />
       </section>
 
       {/* 5) Work gallery */}
-      <section id="work" className="section py-20">
+      <section id="work" className="section py-20 bg-[#151516]">
         <div className="container-max">
           <div className="w-full flex flex-col items-center text-center mb-10">
-            <h3 className="text-3xl md:text-4xl font-bold mb-2 font-sans tracking-tighter uppercase">
-              Wybrane Projekty
+            <h3 className="text-3xl md:text-4xl font-bold mb-2 font-sans tracking-tighter uppercase text-white">
+              Wybrane Realizacje
             </h3>
-            <p className="text-gray-400">Zobacz, co udało mi się stworzyć.</p>
+            <p className="text-[#9ca3af]">Zobacz jakość GoldFrame.</p>
           </div>
           <WorkGallery />
         </div>
       </section>
 
       {/* 6) Method */}
-      <section id="method" className="section py-20 bg-[#1d1d1d]">
+      <section id="method" className="section py-20 bg-[#1a1a1b]">
         <div className="container-max text-center mb-12">
-          <h3 className="text-3xl md:text-4xl font-bold mb-4 font-sans tracking-tighter uppercase">
-            Moja filozofia pracy
+          <h3 className="text-3xl md:text-4xl font-bold mb-4 font-sans tracking-tighter uppercase text-white">
+            Filozofia Pracy
           </h3>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Nie chodzi o to, żeby było "ładnie". Chodzi o to, żeby było skutecznie.
+          <p className="text-[#9ca3af] max-w-2xl mx-auto">
+            Precyzja. Estetyka. Skuteczność. Każdy kadr ma znaczenie.
           </p>
         </div>
         <div className="container-max">
@@ -161,21 +162,22 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 7) CTA contact — poprawiona wersja (wyrównanie, spacing, line-height) */}
+      {/* 7) CTA contact */}
       <section id="contact" className="section py-32 relative overflow-hidden">
         {/* tło sekcji */}
-        <div className="absolute inset-0 bg-[#1d1d1d]" />
+        <div className="absolute inset-0 bg-[#1a1a1b]" />
+        {/* Złota poświata w tle */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[#aa835c]/5 blur-[100px] rounded-full pointer-events-none" />
 
         <div className="container-max text-center relative z-10">
           <h3 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight tracking-tighter text-white">
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-white via-gray-300 to-gray-500">
-              ZRÓBMY RAZEM HAŁAS.
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#aa835c] via-[#f0d5b5] to-[#aa835c] glow-text-gold">
+              STWÓRZMY COŚ WYJĄTKOWEGO
             </span>
           </h3>
 
-          {/* poprawiony paragraf: bez <br/> wymuszeń, większy max-width i lepszy leading */}
-          <p className="mx-auto text-gray-300 text-lg md:text-xl mb-8 max-w-2xl leading-relaxed">
-            Masz surowy materiał? A może tylko pomysł? Napisz do mnie — zamienimy to w viral.
+          <p className="mx-auto text-[#e0e0e0] text-lg md:text-xl mb-8 max-w-2xl leading-relaxed">
+            Twój projekt zasługuje na złotą oprawę. Napisz do mnie — zamienimy wizję w rzeczywistość.
           </p>
 
           {/* KONTAKT — MAIL + TEL Z GRADIENTEM */}
@@ -183,23 +185,23 @@ export default function Page() {
 
             {/* EMAIL */}
             <a
-              href="mailto:bartosz.ciszek@videoedit.pl"
-              className="contact-link flex items-center gap-3 text-gray-300 hover:text-white transition"
+              href="mailto:studio@goldframe.pl"
+              className="contact-link flex items-center gap-3 text-[#9ca3af] hover:text-white transition group"
             >
-              <FaEnvelope className="w-5 h-5 opacity-80" />
+              <FaEnvelope className="w-5 h-5 opacity-80 group-hover:text-[#aa835c] transition" />
               <span className="contact-gradient font-medium tracking-wide">
-                bartosz.ciszek@videoedit.pl
+                studio@goldframe.pl
               </span>
             </a>
 
             {/* TELEFON */}
             <a
               href="tel:+48603832422"
-              className="contact-link flex items-center gap-3 text-gray-300 hover:text-white transition"
+              className="contact-link flex items-center gap-3 text-[#9ca3af] hover:text-white transition group"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5 opacity-80"
+                className="w-5 h-5 opacity-80 group-hover:text-[#aa835c] transition"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -218,15 +220,13 @@ export default function Page() {
             </a>
           </div>
 
-
-
           {/* SOCIAL IKONY */}
-          <div className="flex justify-center gap-8 text-neutral-400 mt-2">
+          <div className="flex justify-center gap-8 text-[#4a4e51] mt-2">
             <a
               href="https://www.instagram.com/videoeditpl?igsh=MW1saXA4OHRkbmRkcg%3D%3D&utm_source=qr"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-cyan-400 transition transform hover:-translate-y-1"
+              className="hover:text-[#aa835c] transition transform hover:-translate-y-1"
             >
               <FaInstagram size={24} />
             </a>
@@ -235,7 +235,7 @@ export default function Page() {
               href="https://www.youtube.com/@videoeditpl"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-red-500 transition transform hover:-translate-y-1"
+              className="hover:text-red-600 transition transform hover:-translate-y-1"
             >
               <FaYoutube size={24} />
             </a>
@@ -243,12 +243,12 @@ export default function Page() {
         </div>
       </section>
 
-      {/* FOOTER — MINIMALNY & WYŚRODKOWANY */}
+      {/* FOOTER */}
       <footer className="mt-8">
-        <div className="bg-linear-to-t from-[#0b0b0b] to-transparent border-t border-white/5">
+        <div className="bg-gradient-to-t from-black to-transparent border-t border-[#aa835c]/10">
           <div className="container-max py-8 flex justify-center">
-            <div className="text-sm text-neutral-400 text-center">
-              © {new Date().getFullYear()} VideoEdit — Bartosz Ciszek. All rights reserved.
+            <div className="text-sm text-[#4a4e51] text-center">
+              © {new Date().getFullYear()} GoldFrame — Bartosz Ciszek. All rights reserved.
             </div>
           </div>
         </div>

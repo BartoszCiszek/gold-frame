@@ -1,31 +1,35 @@
 // /components/ServicesSection.tsx
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { FiScissors, FiFilm, FiMonitor, FiVolume2, FiActivity, FiLayers } from "react-icons/fi";
+import {
+  FiScissors,
+  FiFilm,
+  FiMonitor,
+  FiVolume2,
+  FiActivity,
+  FiLayers,
+} from "react-icons/fi";
 import { IconBaseProps } from "react-icons";
 
-// Definicja typu usługi
 type Service = {
   id: string;
   title: string;
   desc: string;
   icon: React.ReactElement<IconBaseProps>;
-  // videoSrc?: string; // USUNIĘTE: nie używamy już wideo
 };
 
-// Dane usług
 const SERVICES: Service[] = [
   {
     id: "s1",
-    title: "Montaż Dynamiczny (Vlog/YouTube)",
+    title: "Montaż Dynamiczny (YouTube / Vlog)",
     desc: "Krótka forma cięta pod algorytm. Flow, rytm i storytelling, który trzyma widza do samego końca. Memy, pacing, captions i efekty — wszystko po coś. Zero pustych przebitek. Retention robi robotę.",
     icon: <FiScissors />,
   },
   {
     id: "s2",
-    title: "Reklamy & Social Media (Shorts/Reels)",
+    title: "Reklamy & Social Media (Reels / Shorts)",
     desc: "Formaty 9:16 robione pod wynik, nie pod sztukę. Mocny pierwszy sekundowy hook, wyraźny CTA, rytm dopasowany do algorytmów TikToka/Instagrama. Treści, które zatrzymują i konwertują.",
     icon: <FiFilm />,
   },
@@ -43,7 +47,7 @@ const SERVICES: Service[] = [
   },
   {
     id: "s5",
-    title: "Animacje & Motion Graphics",
+    title: "Motion & Animacja",
     desc: "Intro/outro, 3D, kinetic typography, paski dolne — wszystko dopasowane do charakteru marki. Animacje, które wyglądają jak naturalna część historii, a nie wrzucony efekt.",
     icon: <FiLayers />,
   },
@@ -55,71 +59,94 @@ const SERVICES: Service[] = [
   },
 ];
 
-// Komponent pojedynczej karty
-const ServiceCard = ({ service, index }: { service: Service; index: number }) => {
-
+const ServiceCard = ({
+  service,
+  index,
+}: {
+  service: Service;
+  index: number;
+}) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 26 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ delay: index * 0.1, duration: 0.5, type: "spring", stiffness: 50 }}
-      className="group relative bg-[#0a0a0a] rounded-2xl overflow-hidden border border-white/5 shadow-xl hover:shadow-cyan-500/10 transition-all duration-500"
+      viewport={{ once: true }}
+      transition={{ duration: 0.45, delay: index * 0.06 }}
+      className="
+        group
+        relative
+        rounded-2xl
+        bg-[#222224]
+        border border-[#4a4e51]
+        p-10
+        text-center
+        shadow-[0_20px_60px_rgba(0,0,0,0.6)]
+        transition-all
+        duration-300
+        hover:border-[#aa835c]
+        hover:shadow-[0_30px_90px_rgba(0,0,0,0.75),0_0_28px_rgba(170,131,92,0.18)]
+      "
     >
-      {/* Neonowy Border na Hover (Gradient) */}
-      <div className="absolute inset-0 p-[1px] rounded-2xl bg-gradient-to-br from-transparent via-transparent to-transparent group-hover:from-cyan-400 group-hover:to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0">
-        <div className="h-full w-full bg-[#0a0a0a] rounded-2xl" />
-      </div>
-
-      {/* Treść karty */}
-      <div className="relative z-10 p-8 flex flex-col h-full">
-        {/* Ikona */}
-        <div className="mb-6 p-4 bg-white/5 rounded-2xl w-16 h-16 flex items-center justify-center text-white/70 group-hover:text-cyan-400 group-hover:bg-cyan-400/10 group-hover:scale-110 transition-all duration-300 ease-out shadow-[0_0_15px_rgba(0,0,0,0.2)] group-hover:shadow-[0_0_20px_rgba(0,240,255,0.2)]">
-          {React.cloneElement(service.icon, { size: 32 })}
+      {/* ICON — CENTERED + GOLD GLOW */}
+      <div className="flex justify-center mb-6">
+        <div
+          className="
+            w-16 h-16
+            rounded-xl
+            flex items-center justify-center
+            bg-[#1a1a1b]
+            border border-[#4a4e51]
+            text-[#aa835c]
+            transition-all
+            duration-300
+            group-hover:border-[#aa835c]
+            group-hover:shadow-[0_0_22px_rgba(170,131,92,0.45)]
+            group-hover:scale-110
+          "
+        >
+          {React.cloneElement(service.icon, { size: 28 })}
         </div>
-
-        {/* Tytuł */}
-        <h3 className="text-xl md:text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-cyan-300 transition-all duration-300">
-          {service.title}
-        </h3>
-
-        {/* Opis */}
-        <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-          {service.desc}
-        </p>
       </div>
+
+      {/* TITLE */}
+      <h3 className="text-xl font-semibold text-[#f4f4f4] mb-3">
+        {service.title}
+      </h3>
+
+      {/* DESC */}
+      <p className="text-[#e0e0e0]/80 leading-relaxed text-sm">
+        {service.desc}
+      </p>
     </motion.div>
   );
 };
 
-// Główny komponent sekcji
 export default function ServicesSection() {
   return (
-    <section id="services" className="relative py-20 md:py-32 bg-[#1d1d1d] overflow-hidden">
-      {/* Subtelne tło/ziarno */}
-      <div className="absolute inset-0 bg-[#1d1d1d] opacity-50 pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 relative z-10">
-        {/* Nagłówek sekcji */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16 md:mb-24"
-        >
-          <h2 className="text-4xl md:text-6xl font-black text-white uppercase mb-6 tracking-tighter leading-none font-sans">
-            Czym się <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">zajmuję?</span>
+    <section id="services" className="py-24 bg-[#1a1a1b]">
+      <div className="container-max">
+        {/* HEADER */}
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#f4f4f4] mb-4 tracking-tight">
+            CZYM SIĘ <span className="text-[#aa835c] drop-shadow-[0_0_12px_rgba(170,131,92,0.35)]">ZAJMUJĘ?</span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">
-            Kompleksowa postprodukcja wideo. Od surowego materiału po gotowy viral.
-          </p>
-          <div className="h-1.5 w-24 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto mt-8 rounded-full shadow-[0_0_20px_rgba(139,0,255,0.5)]" />
-        </motion.div>
 
-        {/* Grid Usług */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          <p className="text-[#e0e0e0]/80 max-w-2xl mx-auto">
+            Kompleksowa postprodukcja wideo zaprojektowana pod jakość,
+            spójność i realny efekt.
+          </p>
+
+          <div className="mt-8 mx-auto h-[2px] w-20 bg-[#aa835c] shadow-[0_0_16px_rgba(170,131,92,0.45)]" />
+        </div>
+
+        {/* GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {SERVICES.map((service, index) => (
-            <ServiceCard key={service.id} service={service} index={index} />
+            <ServiceCard
+              key={service.id}
+              service={service}
+              index={index}
+            />
           ))}
         </div>
       </div>
