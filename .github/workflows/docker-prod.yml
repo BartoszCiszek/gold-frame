@@ -29,5 +29,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:prod
+             ghcr.io/bartoszciszek/gold-frame:latest
+             ghcr.io/bartoszciszek/gold-frame:prod
