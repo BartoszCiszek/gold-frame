@@ -31,3 +31,8 @@ jobs:
           tags: |
              ghcr.io/bartoszciszek/gold-frame:latest
              ghcr.io/bartoszciszek/gold-frame:prod
+             
+      - name: Notify NUC to redeploy
+        run: |
+          curl -X POST https://goldframe.pl/hooks/goldframe-update
+
