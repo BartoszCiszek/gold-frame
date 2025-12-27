@@ -17,57 +17,50 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-[#1a1a1b] text-[#e0e0e0]">
-      {/* HERO Z WIDEO W TLE */}
+    <main className="min-h-screen bg-[#1a1a1b] text-[#e0e0e0] overflow-x-hidden">
+
+      {/* HERO */}
       <section
         id="home"
-        className="section relative overflow-hidden min-h-[85vh] flex items-center"
+        className="relative min-h-[85vh] flex items-center justify-center overflow-hidden"
       >
-        {/* BACKGROUND VIDEO */}
-        <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover opacity-80"
-          >
-            <source src="/hero.mp4" type="video/mp4" />
-          </video>
 
-          {/* Overlay w kolorze Deep Charcoal */}
-          <div className="absolute inset-0 bg-[#1a1a1b]/80" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1b] via-transparent to-[#1a1a1b]/30" />
-        </div>
+        {/* VIDEO */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-90"
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
 
-        {/* TREŚĆ HERO */}
-        <div className="container-max relative z-10 w-full">
+        {/* SAFETY DARK LAYER */}
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
+
+        {/* CONTENT */}
+        <div className="container-max relative z-10 w-full px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            {/* LEWA KOLUMNA — LOGO */}
-            <div className="flex justify-center md:justify-start">
-              <div className="relative" style={{ width: 380 }}>
-                <Image
-                  src="/Logo.png"
-                  alt="GoldFrame Logo"
-                  width={800}
-                  height={800}
-                  className="object-contain w-[260px] md:w-[340px] lg:w-[380px] h-auto drop-shadow-[0_0_15px_rgba(170,131,92,0.3)]"
-                  style={{ background: "transparent", display: "block" }}
-                  priority
-                />
-              </div>
-            </div>
 
-            {/* PRAWA KOLUMNA — HEROCLIENT */}
-            <div className="flex flex-col justify-center items-start">
-              <HeroClient />
+            {/* LOGO */}
+            <div className="flex justify-center md:justify-start">
+              <Image
+                src="/Logo.webp"
+                alt="GoldFrame Logo"
+                width={380}
+                height={380}
+                priority
+                className="w-[220px] sm:w-[260px] md:w-[320px] lg:w-[380px] drop-shadow-[0_0_20px_rgba(170,131,92,0.45)]"
+              />
             </div>
+              <HeroClient />
           </div>
         </div>
       </section>
 
-      {/* --- SEPARATOR TYPOGRAFICZNY (GOLD) --- */}
-      <div className="w-full bg-[#151516] py-16 flex justify-center items-center relative z-10 border-b border-[#aa835c]/10">
+      {/* SEPARATOR */}
+      <div className="w-full bg-[#151516] py-16 flex justify-center items-center border-b border-[#aa835c]/10">
         <div className="text-center">
           <p className="text-sm text-[#aa835c] font-bold tracking-[0.3em] uppercase mb-3">
             Cinematic Post-Production
@@ -75,42 +68,75 @@ export default function Page() {
           <DynamicTitle />
         </div>
       </div>
-      {/* ------------------------------------------------------- */}
 
-      {/* 1) O mnie */}
-      <section id="about" className="section py-20 relative bg-[#1a1a1b]">
-        <div className="container-max grid md:grid-cols-2 gap-12 items-center">
-          <div className="order-2 md:order-1 relative group">
-            {/* Złoty blob w tle */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#aa835c] to-[#7a5c3d] rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-500" />
-            <div className="w-full h-80 md:h-[600px] card p-0 overflow-hidden rounded-xl relative border border-[#aa835c]/20">
-              <Image
-                src="/bartek.webp"
-                alt="Bartek"
-                width={1000}
-                height={1200}
-                className="object-cover w-full h-full grayscale hover:grayscale-0 transition duration-700"
-              />
-            </div>
-          </div>
+    {/* ABOUT */}
+    <section id="about" className="py-24 bg-[#1a1a1b] overflow-hidden">
+      <div className="container-max grid md:grid-cols-2 gap-14 items-center px-6">
 
-          <div className="order-1 md:order-2">
-            <h2 className="text-4xl md:text-6xl font-black mb-6 leading-[0.9] tracking-tighter font-sans text-white">
-              CZEŚĆ! <br />
-              JESTEM{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#aa835c] to-[#f0d5b5] glow-text-gold">
-                BARTEK
-              </span>
-            </h2>
-            <p className="lead text-lg text-[#e0e0e0] mb-6 font-medium">
-              Tworzę kinową jakość w formacie digital. Zajmuję się postprodukcją, color gradingiem i narracją wizualną dla marek premium.
-            </p>
-            <p className="text-[#9ca3af] mb-8 leading-relaxed">
-              Moim celem jest wydobycie "złota" z każdego ujęcia. Nie tylko montuję — projektuję emocje, które zatrzymują widza.
-            </p>
-          </div>
+        {/* PHOTO */}
+        <div className="relative order-2 md:order-1 flex justify-center">
+
+          {/* CINEMATIC HALO */}
+          <div className="
+            absolute
+            inset-0
+            rounded-[2rem]
+            bg-[radial-gradient(circle_at_center,rgba(170,131,92,0.45)_0%,rgba(170,131,92,0.28)_25%,rgba(170,131,92,0.12)_45%,rgba(0,0,0,0)_70%)]
+            blur-[55px]
+            scale-[1.05]
+            sm:blur-[70px]
+            sm:scale-[1.15]
+            md:blur-[100px]
+            md:scale-[1.25]
+            pointer-events-none
+          " />
+
+          {/* IMAGE */}
+          <Image
+            src="/bartek.webp"
+            alt="Bartek"
+            width={1000}
+            height={1200}
+            className="
+              relative z-10
+              rounded-3xl
+              object-cover
+              grayscale hover:grayscale-0 transition
+              w-[220px]
+              sm:w-[300px]
+              md:w-[380px]
+              lg:w-[420px]
+              shadow-[0_40px_140px_rgba(0,0,0,0.6)]
+            "
+          />
         </div>
-      </section>
+
+        {/* TEXT */}
+        <div className="order-1 md:order-2 text-center md:text-left max-w-xl mx-auto md:mx-0">
+          <h2 className="
+            font-black tracking-tight
+            text-3xl sm:text-4xl md:text-6xl
+            leading-[1.05] sm:leading-[1] md:leading-[0.9]
+            mb-6
+          ">
+            CZEŚĆ! <br />
+            JESTEM{" "}
+            <span className="bg-gradient-to-r from-[#aa835c] to-[#f0d5b5] text-transparent bg-clip-text">
+              BARTEK
+            </span>
+          </h2>
+
+          <p className="text-base sm:text-lg text-gray-300 mb-5 leading-relaxed">
+            Tworzę kinową jakość w formacie digital. Zajmuję się postprodukcją, color gradingiem i narracją wizualną dla marek premium.
+          </p>
+
+          <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
+            Projektuję emocje, które zatrzymują widza.
+          </p>
+        </div>
+
+      </div>
+    </section>
 
       {/* 2) Czym się zajmuję */}
       <ServicesSection />
@@ -120,7 +146,7 @@ export default function Page() {
         <div className="container-max">
           <div className="text-center mb-12">
             <h3 className="text-3xl md:text-4xl font-bold uppercase mb-2 font-sans tracking-tighter text-white">
-              Zaufali mi
+              WSPÓŁPRACE Z INFLUENCERAMI
             </h3>
             {/* Złota linia */}
             <div className="h-1 w-20 bg-[#aa835c] mx-auto rounded-full" />
@@ -185,12 +211,12 @@ export default function Page() {
 
             {/* EMAIL */}
             <a
-              href="mailto:studio@goldframe.pl"
+              href="mailto:bartosz.ciszek@goldframe.pl"
               className="contact-link flex items-center gap-3 text-[#9ca3af] hover:text-white transition group"
             >
               <FaEnvelope className="w-5 h-5 opacity-80 group-hover:text-[#aa835c] transition" />
               <span className="contact-gradient font-medium tracking-wide">
-                studio@goldframe.pl
+                bartosz.ciszek@goldframe.pl
               </span>
             </a>
 

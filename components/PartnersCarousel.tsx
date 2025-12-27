@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import {
   FaYoutube,
   FaInstagram,
+  FaTiktok,
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa";
@@ -16,8 +17,9 @@ const partners = [
   {
     name: "Nicole Węcławiak",
     img: "/nicole.webp",
-    yt: 959216,
-    ig: 416672,
+    yt: 973216,
+    ig: 417672,
+    tiktok: 1523479,
   },
 ];
 
@@ -132,6 +134,12 @@ export default function PartnersCarousel() {
                 <FaInstagram className="text-[#aa835c]" />
                 <span className="font-mono font-semibold">
                   <CountUp to={p.ig} duration={2.5} separator="," />
+                </span>
+              </div>
+              <div className="flex items-center justify-center gap-3 text-[#e0e0e0]">
+                <FaTiktok className="text-[#aa835c]" />
+                <span className="font-mono font-semibold">
+                  <CountUp to={p.tiktok} duration={2.5} separator="," />
                 </span>
               </div>
             </div>

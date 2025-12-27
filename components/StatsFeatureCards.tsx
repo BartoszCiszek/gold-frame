@@ -2,7 +2,7 @@
 
 import React from "react";
 import CountUp from "./CountUp";
-import { FiCheckCircle, FiThumbsUp, FiPlay } from "react-icons/fi";
+import { FiBriefcase, FiRepeat, FiPlay } from "react-icons/fi";
 import { IconBaseProps } from "react-icons";
 import { motion } from "framer-motion";
 
@@ -18,30 +18,32 @@ type Card = {
 
 const CARDS: Card[] = [
   {
-    icon: <FiCheckCircle />,
-    title: "Zrealizowane projekty",
-    desc: "Projekty od briefu po finalny export.",
-    value: 89,
+    icon: <FiBriefcase />,
+    title: "Współprace B2B",
+    desc: "Firmy i twórcy, z którymi realizowałem projekty.",
+    value: 24,
     prefix: "+",
     duration: 2,
   },
   {
-    icon: <FiThumbsUp />,
-    title: "Zadowolenie klientów",
-    desc: "Satysfakcja klienta przy każdym zleceniu.",
-    value: 100,
-    suffix: "%",
+    icon: <FiRepeat />,
+    title: "Powracający klienci",
+    desc: "Klienci, którzy zlecają kolejne produkcje.",
+    value: 17,
+    prefix: "+",
     duration: 2,
   },
   {
     icon: <FiPlay />,
-    title: "Wyświetlenia",
-    desc: "Łączne wyświetlenia materiałów.",
-    value: 671584,
+    title: "Oddane materiały",
+    desc: "Filmy long-form, shorty i rolki oddane do publikacji.",
+    value: 162,
     prefix: "+",
     duration: 2.5,
   },
 ];
+
+
 
 export default function StatsFeatureCards() {
   return (
