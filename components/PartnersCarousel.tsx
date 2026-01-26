@@ -1,15 +1,12 @@
-// /components/PartnersCarousel.tsx
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   FaYoutube,
   FaInstagram,
   FaTiktok,
-  FaChevronLeft,
-  FaChevronRight,
 } from "react-icons/fa";
 import CountUp from "./CountUp";
 
@@ -17,78 +14,38 @@ const partners = [
   {
     name: "Nicole Węcławiak",
     img: "/nicole.webp",
-    yt: 973216,
-    ig: 417672,
-    tiktok: 1523479,
+    yt: 993763,
+    ytUrl: "https://www.youtube.com/@NicoleWeclawiak",
+    ig: 418493,
+    igUrl: "https://www.instagram.com/nicole.weclawiak", 
+    tiktok: 1573267,
+    tiktokUrl: "https://www.tiktok.com/@nicole_wec",
+  },
+  {
+    name: "cZerni",
+    img: "/czerni.webp",
+    yt: 21842,
+    ytUrl: "https://www.youtube.com/@kacper_czerniec",
+    ig: 51217,
+    igUrl: "https://www.instagram.com/czerni28",
+    tiktok: 22936,
+    tiktokUrl: "https://www.tiktok.com/@tonieczerni",
   },
 ];
 
 export default function PartnersCarousel() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const isSingle = partners.length === 1;
-
-  const scroll = (direction: "left" | "right") => {
-    if (!scrollContainerRef.current) return;
-    scrollContainerRef.current.scrollBy({
-      left: direction === "left" ? -360 : 360,
-      behavior: "smooth",
-    });
-  };
-
   return (
     <section className="w-full py-20 relative">
-      {/* STRZAŁKI – tylko gdy >1 partner */}
-      {!isSingle && (
-        <>
-          <button
-            onClick={() => scroll("left")}
-            className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 z-20
-              w-12 h-12 items-center justify-center rounded-full
-              bg-[#1a1a1b] border border-[#4a4e51]
-              text-[#aa835c]
-              hover:border-[#aa835c]
-              hover:shadow-[0_0_22px_rgba(170,131,92,0.45)]
-              transition"
-            aria-label="Poprzedni"
-          >
-            <FaChevronLeft />
-          </button>
-
-          <button
-            onClick={() => scroll("right")}
-            className="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 z-20
-              w-12 h-12 items-center justify-center rounded-full
-              bg-[#1a1a1b] border border-[#4a4e51]
-              text-[#aa835c]
-              hover:border-[#aa835c]
-              hover:shadow-[0_0_22px_rgba(170,131,92,0.45)]
-              transition"
-            aria-label="Następny"
-          >
-            <FaChevronRight />
-          </button>
-        </>
-      )}
-
       {/* CONTAINER */}
-      <div
-        ref={scrollContainerRef}
-        className={
-          isSingle
-            ? "flex justify-center px-4"
-            : "flex overflow-x-auto gap-8 px-4 md:px-16 snap-x snap-mandatory scrollbar-hide"
-        }
-        style={isSingle ? undefined : { scrollbarWidth: "none" }}
-      >
+      <div className="flex flex-wrap justify-center gap-8 px-4 w-full max-w-7xl mx-auto">
         {partners.map((p, idx) => (
           <motion.article
             key={`${p.name}-${idx}`}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: idx * 0.1 }}
             className="
-              snap-center
               w-[300px] md:w-[340px]
               bg-[#222224]
               border border-[#4a4e51]
@@ -121,27 +78,48 @@ export default function PartnersCarousel() {
               <div className="mx-auto mt-2 h-[2px] w-12 bg-[#aa835c] shadow-[0_0_12px_rgba(170,131,92,0.45)]" />
             </div>
 
-            {/* STATS */}
+            {/* STATS - TERAZ KLIKALNE */}
             <div className="px-6 pb-6 flex flex-col gap-3">
-              <div className="flex items-center justify-center gap-3 text-[#e0e0e0]">
-                <FaYoutube className="text-[#aa835c]" />
-                <span className="font-mono font-semibold">
+              
+              {/* YouTube */}
+              <a 
+                href={p.ytUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 text-[#e0e0e0] group cursor-pointer hover:bg-white/5 p-2 rounded-lg transition-colors"
+              >
+                <FaYoutube className="text-[#aa835c] group-hover:scale-110 transition-transform" />
+                <span className="font-mono font-semibold group-hover:text-white transition-colors">
                   <CountUp to={p.yt} duration={2.5} separator="," />
                 </span>
-              </div>
+              </a>
 
-              <div className="flex items-center justify-center gap-3 text-[#e0e0e0]">
-                <FaInstagram className="text-[#aa835c]" />
-                <span className="font-mono font-semibold">
+              {/* Instagram */}
+              <a 
+                href={p.igUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 text-[#e0e0e0] group cursor-pointer hover:bg-white/5 p-2 rounded-lg transition-colors"
+              >
+                <FaInstagram className="text-[#aa835c] group-hover:scale-110 transition-transform" />
+                <span className="font-mono font-semibold group-hover:text-white transition-colors">
                   <CountUp to={p.ig} duration={2.5} separator="," />
                 </span>
-              </div>
-              <div className="flex items-center justify-center gap-3 text-[#e0e0e0]">
-                <FaTiktok className="text-[#aa835c]" />
-                <span className="font-mono font-semibold">
+              </a>
+
+              {/* TikTok */}
+              <a 
+                href={p.tiktokUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 text-[#e0e0e0] group cursor-pointer hover:bg-white/5 p-2 rounded-lg transition-colors"
+              >
+                <FaTiktok className="text-[#aa835c] group-hover:scale-110 transition-transform" />
+                <span className="font-mono font-semibold group-hover:text-white transition-colors">
                   <CountUp to={p.tiktok} duration={2.5} separator="," />
                 </span>
-              </div>
+              </a>
+
             </div>
           </motion.article>
         ))}
