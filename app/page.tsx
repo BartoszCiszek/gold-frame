@@ -203,7 +203,9 @@ export default function Page() {
           </h3>
 
           <p className="mx-auto text-[#e0e0e0] text-lg md:text-xl mb-8 max-w-2xl leading-relaxed">
-            Twój projekt zasługuje na złotą oprawę. Napisz do mnie — zamienimy wizję w rzeczywistość.
+            Twój projekt zasługuje na złotą oprawę. 
+            <br />
+            Napisz do mnie — zamienimy wizję w rzeczywistość.
           </p>
 
           {/* KONTAKT — MAIL + TEL Z GRADIENTEM */}
